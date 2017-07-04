@@ -1,5 +1,5 @@
 function expandedWidth(maxLengthAttribute) {
-    return maxLengthAttribute * 3 + 10
+    return maxLengthAttribute * 3
 }
 
 function drawStub() {
