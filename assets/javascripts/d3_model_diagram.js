@@ -1,3 +1,189 @@
+var model_diagram_json = {
+  "models": {
+    "nodes": [{
+      "name": "Auth::RefreshToken",
+      "shape": "Mrecord",
+      "fillcolor": null,
+      "fontcolor": null,
+      "attributes": [["updated_at", "Timestamp without time zone"], ["user_id", "Integer"], ["token", "Character varying"], ["ip_address", "Inet"], ["user_agent", "Character varying"], ["last_used_at", "Timestamp without time zone"], ["created_at", "Timestamp without time zone"], ["id", "Integer"]],
+      "description": []
+    }, {
+      "name": "DeletedUser",
+      "shape": "Mrecord",
+      "fillcolor": null,
+      "fontcolor": null,
+      "attributes": [["location", "Character varying"], ["origin_id", "Integer"], ["origin_created_at", "Timestamp without time zone"], ["origin_updated_at", "Timestamp without time zone"], ["email", "Character varying"], ["password_digest", "Character varying"], ["first_name", "Character varying"], ["last_name", "Character varying"], ["gender", "Integer"], ["avatar_file_name", "Character varying"], ["avatar_content_type", "Character varying"], ["avatar_file_size", "Integer"], ["avatar_updated_at", "Timestamp without time zone"], ["height", "Numeric"], ["weight", "Numeric"], ["weight_unit", "Integer"], ["height_unit", "Integer"], ["birthday", "Date"], ["email_confirmed_at", "Timestamp without time zone"], ["locale", "Character varying"], ["registration_country", "Character varying"], ["application_source", "Integer"], ["platform_source", "Integer"], ["created_at", "Timestamp without time zone"], ["updated_at", "Timestamp without time zone"], ["emails_allowed", "Boolean"], ["about", "Text"], ["measurement_system", "Integer"], ["sanitized_email", "Character varying"], ["time_zone", "Character varying"], ["id", "Integer"]],
+      "description": ["Desch isch a tescht", "ischisch"]
+    }, {
+      "name": "Event",
+      "shape": "Mrecord",
+      "fillcolor": null,
+      "fontcolor": null,
+      "attributes": [["updated_at", "Timestamp without time zone"], ["done_at", "Timestamp without time zone"], ["done_by", "Character varying(255)"], ["fl_uid", "Integer"], ["source", "Character varying(255)"], ["message", "Character varying"], ["type", "Character varying(255)"], ["data", "Jsonb"], ["metadata", "Jsonb"], ["created_at", "Timestamp without time zone"], ["id", "Integer"]],
+      "description": []
+    }, {
+      "name": "Facebook::Account",
+      "shape": "Mrecord",
+      "fillcolor": null,
+      "fontcolor": null,
+      "attributes": [["id", "Integer"], ["user_id", "Integer"], ["access_token", "Text"], ["uid", "Bigint"], ["created_at", "Timestamp without time zone"], ["updated_at", "Timestamp without time zone"]],
+      "description": []
+    }, {
+      "name": "Facebook::MobileAppInstall",
+      "shape": "Mrecord",
+      "fillcolor": null,
+      "fontcolor": null,
+      "attributes": [["id", "Integer"], ["advertiser_id", "Character varying(100)"], ["application_id", "Character varying(100)"], ["created_at", "Timestamp without time zone"], ["updated_at", "Timestamp without time zone"]],
+      "description": []
+    }, {
+      "name": "Marketing::AppBanner",
+      "shape": "Mrecord",
+      "fillcolor": null,
+      "fontcolor": null,
+      "attributes": [["platform", "Integer"], ["title", "Character varying"], ["action_url", "Character varying"], ["coach", "Integer"], ["gender", "Integer"], ["starts_at", "Timestamp without time zone"], ["ends_at", "Timestamp without time zone"], ["image_file_name", "Character varying"], ["image_content_type", "Character varying"], ["image_file_size", "Integer"], ["image_updated_at", "Timestamp without time zone"], ["created_at", "Timestamp without time zone"], ["updated_at", "Timestamp without time zone"], ["locales", "Character varying"], ["translations", "Jsonb"], ["id", "Integer"]],
+      "description": []
+    }, {
+      "name": "Marketing::Campaign",
+      "shape": "Mrecord",
+      "fillcolor": null,
+      "fontcolor": null,
+      "attributes": [["translations", "Jsonb"], ["title", "Character varying"], ["text", "Character varying"], ["whats_new_text", "Character varying"], ["link_text", "Character varying"], ["link_url", "Character varying"], ["uses_button_for_link", "Boolean"], ["uses_action_button", "Boolean"], ["link_button_tracking", "Character varying"], ["close_button_tracking", "Character varying"], ["platform", "Integer"], ["gender", "Integer"], ["coach", "Integer"], ["impressions", "Integer"], ["start_date", "Timestamp without time zone"], ["end_date", "Timestamp without time zone"], ["created_at", "Timestamp without time zone"], ["updated_at", "Timestamp without time zone"], ["image_file_name", "Character varying"], ["image_content_type", "Character varying"], ["image_file_size", "Integer"], ["image_updated_at", "Timestamp without time zone"], ["theme", "Integer"], ["locales", "Character varying"], ["id", "Integer"]],
+      "description": []
+    }, {
+      "name": "Marketing::EmailConfirmation",
+      "shape": "Mrecord",
+      "fillcolor": null,
+      "fontcolor": null,
+      "attributes": [["sent_at", "Timestamp without time zone"], ["user_id", "Integer"], ["token", "Character varying"], ["id", "Integer"], ["confirmed_at", "Timestamp without time zone"], ["created_at", "Timestamp without time zone"], ["updated_at", "Timestamp without time zone"]],
+      "description": []
+    }, {
+      "name": "Marketing::UserProfile",
+      "shape": "Mrecord",
+      "fillcolor": null,
+      "fontcolor": null,
+      "attributes": [["id", "Integer"], ["marketing_campaign_id", "Integer"], ["user_id", "Integer"], ["clicked", "Integer"], ["closed", "Integer"]],
+      "description": []
+    }, {
+      "name": "Marketing::WebCampaign",
+      "shape": "Mrecord",
+      "fillcolor": null,
+      "fontcolor": null,
+      "attributes": [["updated_at", "Timestamp without time zone"], ["voucher_token", "Character varying"], ["target", "Integer"], ["starts_at", "Timestamp without time zone"], ["ends_at", "Timestamp without time zone"], ["headline", "Character varying"], ["subline", "Character varying"], ["translations", "Jsonb"], ["created_at", "Timestamp without time zone"], ["id", "Bigint"]],
+      "description": []
+    }, {
+      "name": "NotificationInfo",
+      "shape": "Mrecord",
+      "fillcolor": null,
+      "fontcolor": null,
+      "attributes": [["confirmation_delivered_by_aws_at", "Timestamp without time zone"], ["user_id", "Integer"], ["aws_bounced", "Boolean"], ["aws_bounce_info", "Character varying"], ["optivo_bounced", "Boolean"], ["optivo_bounce_info", "Character varying"], ["optivo_blacklisted", "Boolean"], ["optivo_blacklist_info", "Character varying"], ["created_at", "Timestamp without time zone"], ["updated_at", "Timestamp without time zone"], ["confirmation_sent_to_aws_at", "Timestamp without time zone"], ["id", "Integer"]],
+      "description": []
+    }, {
+      "name": "Referral::Gift",
+      "shape": "Mrecord",
+      "fillcolor": null,
+      "fontcolor": null,
+      "attributes": [["type", "Integer"], ["user_id", "Integer"], ["referral_reference_id", "Integer"], ["id", "Integer"], ["details", "Json"], ["created_at", "Timestamp without time zone"], ["updated_at", "Timestamp without time zone"]],
+      "description": []
+    }, {
+      "name": "Referral::Reference",
+      "shape": "Mrecord",
+      "fillcolor": null,
+      "fontcolor": null,
+      "attributes": [["rejected_at", "Timestamp without time zone"], ["inviter_id", "Integer"], ["invitee_id", "Integer"], ["registered_at", "Timestamp without time zone"], ["activated_at", "Timestamp without time zone"], ["created_at", "Timestamp without time zone"], ["updated_at", "Timestamp without time zone"], ["brand_type", "Character varying"], ["approved_at", "Timestamp without time zone"], ["id", "Integer"]],
+      "description": []
+    }, {
+      "name": "Status",
+      "shape": "Mrecord",
+      "fillcolor": null,
+      "fontcolor": null,
+      "attributes": [["id", "Integer"], ["user_id", "Integer"], ["values", "Json"], ["created_at", "Timestamp without time zone"], ["updated_at", "Timestamp without time zone"]],
+      "description": []
+    }, {
+      "name": "TemporaryPassword",
+      "shape": "Mrecord",
+      "fillcolor": null,
+      "fontcolor": null,
+      "attributes": [["id", "Integer"], ["user_id", "Integer"], ["password", "Character varying"], ["created_at", "Timestamp without time zone"], ["updated_at", "Timestamp without time zone"]],
+      "description": []
+    }, {
+      "name": "User",
+      "shape": "Mrecord",
+      "fillcolor": null,
+      "fontcolor": null,
+      "attributes": [["location", "Character varying"], ["email", "Character varying"], ["password_digest", "Character varying"], ["first_name", "Character varying"], ["last_name", "Character varying"], ["gender", "Integer"], ["avatar_file_name", "Character varying"], ["avatar_content_type", "Character varying"], ["avatar_file_size", "Integer"], ["avatar_updated_at", "Timestamp without time zone"], ["height", "Numeric"], ["weight", "Numeric"], ["weight_unit", "Integer"], ["height_unit", "Integer"], ["birthday", "Date"], ["email_confirmed_at", "Timestamp without time zone"], ["locale", "Character varying"], ["registration_country", "Character varying"], ["application_source", "Integer"], ["platform_source", "Integer"], ["created_at", "Timestamp without time zone"], ["updated_at", "Timestamp without time zone"], ["emails_allowed", "Boolean"], ["about", "Text"], ["measurement_system", "Integer"], ["sanitized_email", "Character varying"], ["time_zone", "Character varying"], ["id", "Integer"]],
+      "description": []
+    }],
+    "links": [{
+      "source": "Marketing::UserProfile",
+      "target": "Marketing::Campaign",
+      "arrowtail": "dot_blue",
+      "arrowhead": "double_arrow_blue",
+      "color": "#1c7a9b"
+    }, {
+      "source": "Audited::Audit",
+      "target": "NotificationInfo",
+      "arrowtail": "odot_blue",
+      "arrowhead": "double_arrow_blue",
+      "color": "#1c7a9b"
+    }, {
+      "source": "Referral::Reference",
+      "target": "User",
+      "arrowtail": "dot_dark_gray",
+      "arrowhead": "none",
+      "color": "#383838"
+    }, {
+      "source": "Audited::Audit",
+      "target": "User",
+      "arrowtail": "odot_blue",
+      "arrowhead": "double_arrow_blue",
+      "color": "#1c7a9b"
+    }, {
+      "source": "Audited::Audit",
+      "target": "User",
+      "arrowtail": "odot_blue",
+      "arrowhead": "double_arrow_blue",
+      "color": "#1c7a9b"
+    }, {
+      "source": "Facebook::Account",
+      "target": "User",
+      "arrowtail": "dot_light_gray",
+      "arrowhead": "single_arrow_light_gray",
+      "color": "#BBB"
+    }, {
+      "source": "NotificationInfo",
+      "target": "User",
+      "arrowtail": "dot_light_gray",
+      "arrowhead": "single_arrow_light_gray",
+      "color": "#BBB"
+    }, {
+      "source": "TemporaryPassword",
+      "target": "User",
+      "arrowtail": "dot_blue",
+      "arrowhead": "double_arrow_blue",
+      "color": "#1c7a9b"
+    }, {
+      "source": "Auth::RefreshToken",
+      "target": "User",
+      "arrowtail": "dot_blue",
+      "arrowhead": "double_arrow_blue",
+      "color": "#1c7a9b"
+    }, {
+      "source": "Marketing::UserProfile",
+      "target": "User",
+      "arrowtail": "dot_blue",
+      "arrowhead": "double_arrow_blue",
+      "color": "#1c7a9b"
+    }, {
+      "source": "Marketing::EmailConfirmation",
+      "target": "User",
+      "arrowtail": "dot_blue",
+      "arrowhead": "double_arrow_blue",
+      "color": "#1c7a9b"
+    }]
+  }
+};
+
+
 const ELIPSE_WIDTH_FACTOR = 5,
     RECT_WIDTH_FACTOR = 3,
     EXPANDED_TOP_PADDING = -10,
@@ -11,103 +197,67 @@ const ELIPSE_WIDTH_FACTOR = 5,
     ];
 
 
+var width = 780,
+    height = 400;
 
-function generate_model_diagram_svg(model_diagram_json) {
+var linkDistance = 300,
+    padding = 1000,
+    charge = -8000,
+    gravity = .3,
+    friction = .6,
+    linkStrength = 1,
+    chargeDistance = 1000;
 
-  var nodes = {};
+var links = [];
+var nodes = {};
 
-  var width = 780,
-      height = 400;
+var savedGraph = {nodes: [], links: []};
+var svg;
 
-  var linkDistance = 300,
-      padding = 1000,
-      charge = -8000,
-      gravity = .3,
-      friction = .6,
-      linkStrength = 1,
-      chargeDistance = 1000;
+var nodes_temp;
+var links_temp;
+
+d3.select("#saveBtn").on('click', function () {
+  savedGraph.nodes = nodes_temp.data();
+  console.log(savedGraph);
+  savedGraph.nodes.pop();
+  savedGraph.links = links_temp.data();
+  svg.selectAll("*").remove();
+});
+
+d3.select("#loadBtn").on('click', function () {
+  draw(savedGraph);
+});
 
 
-  var savedGraph = localStorage.getItem('savedGraph');
+var force = d3.layout.force()
+    .charge(charge)
+    .gravity(gravity)
+    .friction(friction)
+    .linkStrength(linkStrength)
+    .chargeDistance(chargeDistance)
+    .linkDistance(linkDistance)
+    .size([width, height]);
 
-  if(savedGraph) {
-    console.log("Graph schon vorhanden");
-    console.log(savedGraph);
-  } else {
-    console.log("Neu initialisieren");
+var zoom;
 
-    var zoom =
-        d3.behavior.zoom()
-            .scaleExtent([0, 1])
-            .on("zoom", zoomed);
 
-    // Compute the distinct nodes from the links.
-    var links = model_diagram_json["models"].links;
+if (typeof model_diagram_json !== "undefined") {
+  var graph = {nodes: [], links: []};
+  graph.nodes = model_diagram_json["models"].nodes;
+  graph.links = model_diagram_json["models"].links;
+  draw(graph);
+}
 
-    model_diagram_json["models"].nodes.forEach(function (node) {
-      var nodeShape = "";
-      var shapeType = "";
-      var nodeNameLength = node.name.length;
+function draw(graph) {
 
-      if (node.shape == "Mrecord") {
-        nodeShape = drawNodeElipse(nodeNameLength);
-        shapeType = "Mrecord";
-      } else if (node.shape == "record") {
-        nodeShape = drawNodeRect(nodeNameLength);
-        shapeType = "record";
-      } else {
-        nodeShape = drawNodeRect(nodeNameLength);
-        shapeType = "other";
-      }
+  console.log(graph);
 
-      // SET DEFAULT VALUE
-      var expanded;
-      if (node.expanded) {
-        expanded = node.expanded;
-      } else {
-        expanded = false;
-      }
+  function zoomed() {
+    viz.attr("transform",
+        "translate(" + d3.event.translate + ")" + "scale(" + d3.event.scale + ")");
+  };
 
-      nodes[node.name] = {
-        name: node.name.replace(/::/g, '_'),
-        description: node.description,
-        attributes: node.attributes,
-        expanded: expanded,
-        fillcolor: node.fillcolor,
-        fontcolor: node.fontcolor,
-        shape: nodeShape,
-        shapetype: shapeType
-      };
-
-      if (node.attributes == node.fillcolor == node.fontcolor == null) {
-        nodes[node.name].fillcolor = "#FFF";
-        nodes[node.name].fontcolor = "#000";
-      } else if (node.fillcolor == null) {
-        nodes[node.name].fillcolor = "#DDD";
-        nodes[node.name].fontcolor = "#000";
-      }
-    });
-
-    links.forEach(function (link) {
-      link.source = nodes[link.source] ||
-          (nodes[link.source] = {
-            name: link.source,
-            fillcolor: "#FFF",
-            fontcolor: "#000",
-            attributes: null,
-            shape: drawNodeRect(link.source.length)
-          });
-      link.target = nodes[link.target] ||
-          (nodes[link.target] = {
-            name: link.target,
-            fillcolor: "#FFF",
-            fontcolor: "#000",
-            attributes: null,
-            shape: drawNodeRect(link.target.length)
-          });
-    });
-
-  }
 
   function linkDoubleClicked(link) {
     linkPath = d3.select(this)[0][0];
@@ -334,14 +484,12 @@ function generate_model_diagram_svg(model_diagram_json) {
     }
   }
 
-
   function getShapeHeight(nodePathShape) {
     var element = d3.select(nodePathShape)[0][0],
         elementPath = element.getAttribute('d');
 
     return parseFloat(/[0-9]+\sZ/.exec(elementPath)[0].replace(' Z', ''));
   }
-
 
   function getMaxLengthAttribute(node) {
 
@@ -358,7 +506,6 @@ function generate_model_diagram_svg(model_diagram_json) {
     }
 
   }
-
 
   function getMaxLengthAttributeNames(node) {
 
@@ -380,7 +527,6 @@ function generate_model_diagram_svg(model_diagram_json) {
       return maxLengthAttribute;
     }
   }
-
 
   function getMaxLengthAttributeTypes(node) {
 
@@ -404,7 +550,6 @@ function generate_model_diagram_svg(model_diagram_json) {
       return maxLengthAttribute;
     }
   }
-
 
   function minimizeNode(node, nodePathShape) {
     d3.select(nodePathShape).attr('d', node.shape);
@@ -457,20 +602,85 @@ function generate_model_diagram_svg(model_diagram_json) {
     savedgraph = nodes;
   }
 
-  var force =
-      d3.layout.force()
-          .size([width, height])
-          .charge(charge)
-          .gravity(gravity)
-          .friction(friction)
-          .linkDistance(linkDistance)
-          .linkStrength(linkStrength)
-          .nodes(d3.values(nodes))
-          .links(links)
-          .chargeDistance(chargeDistance)
-          .on('tick', tick)
-          .on('end', tickEnd)
-          .start();
+
+  zoom = d3.behavior.zoom()
+      .scaleExtent([0, 1])
+      .on("zoom", zoomed);
+  // Compute the distinct nodes from the links.
+  links = graph.links;
+
+  nodes = {};
+
+  graph.nodes.forEach(function (single_node) {
+
+    var nodeShape = "";
+    var shapeType = "";
+    var nodeNameLength = single_node.name.length;
+
+
+    if (single_node.shape == "Mrecord") {
+      nodeShape = drawNodeElipse(nodeNameLength);
+      shapeType = "Mrecord";
+    } else if (single_node.shape == "record") {
+      nodeShape = drawNodeRect(nodeNameLength);
+      shapeType = "record";
+    } else {
+      nodeShape = drawNodeRect(nodeNameLength);
+      shapeType = "other";
+    }
+
+    // SET DEFAULT VALUE
+    var expanded;
+    if (single_node.expanded) {
+      expanded = single_node.expanded;
+    } else {
+      expanded = false;
+    }
+
+    nodes[single_node.name] = {
+      name: single_node.name.replace(/::/g, '_'),
+      description: single_node.description,
+      attributes: single_node.attributes,
+      expanded: expanded,
+      fillcolor: single_node.fillcolor,
+      fontcolor: single_node.fontcolor,
+      shape: nodeShape,
+      shapetype: shapeType
+    };
+
+    if (single_node.attributes == single_node.fillcolor == single_node.fontcolor == null) {
+      nodes[single_node.name].fillcolor = "#FFF";
+      nodes[single_node.name].fontcolor = "#000";
+    } else if (single_node.fillcolor == null) {
+      nodes[single_node.name].fillcolor = "#DDD";
+      nodes[single_node.name].fontcolor = "#000";
+    }
+  });
+
+  links.forEach(function (link) {
+    link.source = nodes[link.source] ||
+        (nodes[link.source] = {
+          name: link.source,
+          fillcolor: "#FFF",
+          fontcolor: "#000",
+          attributes: null,
+          shape: drawNodeRect(link.source.length)
+        });
+    link.target = nodes[link.target] ||
+        (nodes[link.target] = {
+          name: link.target,
+          fillcolor: "#FFF",
+          fontcolor: "#000",
+          attributes: null,
+          shape: drawNodeRect(link.target.length)
+        });
+  });
+
+  force.nodes(d3.values(nodes))
+      .links(links)
+      .on('tick', tick)
+      .on('end', tickEnd)
+      .start();
   //.chargeDistance(chargeDistance)
 
   var n = 100;
@@ -486,7 +696,8 @@ function generate_model_diagram_svg(model_diagram_json) {
       })
       .on("dragstart", dragstarted);
 
-  var svg =
+  d3.select("div#svg-model-diagram div").remove();
+  svg =
       d3.select("div#svg-model-diagram")
           .append("div")
           .classed("svg-container", true)
@@ -502,10 +713,6 @@ function generate_model_diagram_svg(model_diagram_json) {
       svg.append('g')
           .attr('id', 'viz');
 
-  function zoomed() {
-    viz.attr("transform",
-        "translate(" + d3.event.translate + ")" + "scale(" + d3.event.scale + ")");
-  };
 
   function helpToggle() {
     $('svg > image.help-image').toggleClass('no-opacity');
@@ -828,8 +1035,20 @@ function generate_model_diagram_svg(model_diagram_json) {
         return d.fontcolor;
       })
       .text(function (d) {
+        //console.log(d);
         return d.name.replace(/_/g, '::');
       });
+
+
+  nodes_temp = viz.selectAll(".node").data(force.nodes());
+
+
+  //nodes_temp = force.nodes();
+
+  console.log("node_temp_first", viz.selectAll(".node").data(force.nodes()));
+  console.log("node_temp", nodes_temp);
+
+  links_temp = path;
 
   function tick() {
 
@@ -868,9 +1087,6 @@ function generate_model_diagram_svg(model_diagram_json) {
       return "translate(" + d.x + "," + d.y + ")";
     });
 
-    savedGraph = nodes;
-    localStorage.setItem('savedGraph',d3.selectAll('.node'));
-    //console.log(savedGraph);
   }
 
   function calculateHeight(node) {
@@ -930,195 +1146,3 @@ function generate_model_diagram_svg(model_diagram_json) {
   }
 
 };
-
-var model_diagram_json = {
-  "models": {
-    "nodes": [{
-      "name": "Auth::RefreshToken",
-      "shape": "Mrecord",
-      "fillcolor": null,
-      "fontcolor": null,
-      "attributes": [["updated_at", "Timestamp without time zone"], ["user_id", "Integer"], ["token", "Character varying"], ["ip_address", "Inet"], ["user_agent", "Character varying"], ["last_used_at", "Timestamp without time zone"], ["created_at", "Timestamp without time zone"], ["id", "Integer"]],
-      "description": []
-    }, {
-      "name": "DeletedUser",
-      "shape": "Mrecord",
-      "fillcolor": null,
-      "fontcolor": null,
-      "attributes": [["location", "Character varying"], ["origin_id", "Integer"], ["origin_created_at", "Timestamp without time zone"], ["origin_updated_at", "Timestamp without time zone"], ["email", "Character varying"], ["password_digest", "Character varying"], ["first_name", "Character varying"], ["last_name", "Character varying"], ["gender", "Integer"], ["avatar_file_name", "Character varying"], ["avatar_content_type", "Character varying"], ["avatar_file_size", "Integer"], ["avatar_updated_at", "Timestamp without time zone"], ["height", "Numeric"], ["weight", "Numeric"], ["weight_unit", "Integer"], ["height_unit", "Integer"], ["birthday", "Date"], ["email_confirmed_at", "Timestamp without time zone"], ["locale", "Character varying"], ["registration_country", "Character varying"], ["application_source", "Integer"], ["platform_source", "Integer"], ["created_at", "Timestamp without time zone"], ["updated_at", "Timestamp without time zone"], ["emails_allowed", "Boolean"], ["about", "Text"], ["measurement_system", "Integer"], ["sanitized_email", "Character varying"], ["time_zone", "Character varying"], ["id", "Integer"]],
-      "description": ["Desch isch a tescht", "ischisch"]
-    }, {
-      "name": "Event",
-      "shape": "Mrecord",
-      "fillcolor": null,
-      "fontcolor": null,
-      "attributes": [["updated_at", "Timestamp without time zone"], ["done_at", "Timestamp without time zone"], ["done_by", "Character varying(255)"], ["fl_uid", "Integer"], ["source", "Character varying(255)"], ["message", "Character varying"], ["type", "Character varying(255)"], ["data", "Jsonb"], ["metadata", "Jsonb"], ["created_at", "Timestamp without time zone"], ["id", "Integer"]],
-      "description": []
-    }, {
-      "name": "Facebook::Account",
-      "shape": "Mrecord",
-      "fillcolor": null,
-      "fontcolor": null,
-      "attributes": [["id", "Integer"], ["user_id", "Integer"], ["access_token", "Text"], ["uid", "Bigint"], ["created_at", "Timestamp without time zone"], ["updated_at", "Timestamp without time zone"]],
-      "description": []
-    }, {
-      "name": "Facebook::MobileAppInstall",
-      "shape": "Mrecord",
-      "fillcolor": null,
-      "fontcolor": null,
-      "attributes": [["id", "Integer"], ["advertiser_id", "Character varying(100)"], ["application_id", "Character varying(100)"], ["created_at", "Timestamp without time zone"], ["updated_at", "Timestamp without time zone"]],
-      "description": []
-    }, {
-      "name": "Marketing::AppBanner",
-      "shape": "Mrecord",
-      "fillcolor": null,
-      "fontcolor": null,
-      "attributes": [["platform", "Integer"], ["title", "Character varying"], ["action_url", "Character varying"], ["coach", "Integer"], ["gender", "Integer"], ["starts_at", "Timestamp without time zone"], ["ends_at", "Timestamp without time zone"], ["image_file_name", "Character varying"], ["image_content_type", "Character varying"], ["image_file_size", "Integer"], ["image_updated_at", "Timestamp without time zone"], ["created_at", "Timestamp without time zone"], ["updated_at", "Timestamp without time zone"], ["locales", "Character varying"], ["translations", "Jsonb"], ["id", "Integer"]],
-      "description": []
-    }, {
-      "name": "Marketing::Campaign",
-      "shape": "Mrecord",
-      "fillcolor": null,
-      "fontcolor": null,
-      "attributes": [["translations", "Jsonb"], ["title", "Character varying"], ["text", "Character varying"], ["whats_new_text", "Character varying"], ["link_text", "Character varying"], ["link_url", "Character varying"], ["uses_button_for_link", "Boolean"], ["uses_action_button", "Boolean"], ["link_button_tracking", "Character varying"], ["close_button_tracking", "Character varying"], ["platform", "Integer"], ["gender", "Integer"], ["coach", "Integer"], ["impressions", "Integer"], ["start_date", "Timestamp without time zone"], ["end_date", "Timestamp without time zone"], ["created_at", "Timestamp without time zone"], ["updated_at", "Timestamp without time zone"], ["image_file_name", "Character varying"], ["image_content_type", "Character varying"], ["image_file_size", "Integer"], ["image_updated_at", "Timestamp without time zone"], ["theme", "Integer"], ["locales", "Character varying"], ["id", "Integer"]],
-      "description": []
-    }, {
-      "name": "Marketing::EmailConfirmation",
-      "shape": "Mrecord",
-      "fillcolor": null,
-      "fontcolor": null,
-      "attributes": [["sent_at", "Timestamp without time zone"], ["user_id", "Integer"], ["token", "Character varying"], ["id", "Integer"], ["confirmed_at", "Timestamp without time zone"], ["created_at", "Timestamp without time zone"], ["updated_at", "Timestamp without time zone"]],
-      "description": []
-    }, {
-      "name": "Marketing::UserProfile",
-      "shape": "Mrecord",
-      "fillcolor": null,
-      "fontcolor": null,
-      "attributes": [["id", "Integer"], ["marketing_campaign_id", "Integer"], ["user_id", "Integer"], ["clicked", "Integer"], ["closed", "Integer"]],
-      "description": []
-    }, {
-      "name": "Marketing::WebCampaign",
-      "shape": "Mrecord",
-      "fillcolor": null,
-      "fontcolor": null,
-      "attributes": [["updated_at", "Timestamp without time zone"], ["voucher_token", "Character varying"], ["target", "Integer"], ["starts_at", "Timestamp without time zone"], ["ends_at", "Timestamp without time zone"], ["headline", "Character varying"], ["subline", "Character varying"], ["translations", "Jsonb"], ["created_at", "Timestamp without time zone"], ["id", "Bigint"]],
-      "description": []
-    }, {
-      "name": "NotificationInfo",
-      "shape": "Mrecord",
-      "fillcolor": null,
-      "fontcolor": null,
-      "attributes": [["confirmation_delivered_by_aws_at", "Timestamp without time zone"], ["user_id", "Integer"], ["aws_bounced", "Boolean"], ["aws_bounce_info", "Character varying"], ["optivo_bounced", "Boolean"], ["optivo_bounce_info", "Character varying"], ["optivo_blacklisted", "Boolean"], ["optivo_blacklist_info", "Character varying"], ["created_at", "Timestamp without time zone"], ["updated_at", "Timestamp without time zone"], ["confirmation_sent_to_aws_at", "Timestamp without time zone"], ["id", "Integer"]],
-      "description": []
-    }, {
-      "name": "Referral::Gift",
-      "shape": "Mrecord",
-      "fillcolor": null,
-      "fontcolor": null,
-      "attributes": [["type", "Integer"], ["user_id", "Integer"], ["referral_reference_id", "Integer"], ["id", "Integer"], ["details", "Json"], ["created_at", "Timestamp without time zone"], ["updated_at", "Timestamp without time zone"]],
-      "description": []
-    }, {
-      "name": "Referral::Reference",
-      "shape": "Mrecord",
-      "fillcolor": null,
-      "fontcolor": null,
-      "attributes": [["rejected_at", "Timestamp without time zone"], ["inviter_id", "Integer"], ["invitee_id", "Integer"], ["registered_at", "Timestamp without time zone"], ["activated_at", "Timestamp without time zone"], ["created_at", "Timestamp without time zone"], ["updated_at", "Timestamp without time zone"], ["brand_type", "Character varying"], ["approved_at", "Timestamp without time zone"], ["id", "Integer"]],
-      "description": []
-    }, {
-      "name": "Status",
-      "shape": "Mrecord",
-      "fillcolor": null,
-      "fontcolor": null,
-      "attributes": [["id", "Integer"], ["user_id", "Integer"], ["values", "Json"], ["created_at", "Timestamp without time zone"], ["updated_at", "Timestamp without time zone"]],
-      "description": []
-    }, {
-      "name": "TemporaryPassword",
-      "shape": "Mrecord",
-      "fillcolor": null,
-      "fontcolor": null,
-      "attributes": [["id", "Integer"], ["user_id", "Integer"], ["password", "Character varying"], ["created_at", "Timestamp without time zone"], ["updated_at", "Timestamp without time zone"]],
-      "description": []
-    }, {
-      "name": "User",
-      "shape": "Mrecord",
-      "fillcolor": null,
-      "fontcolor": null,
-      "attributes": [["location", "Character varying"], ["email", "Character varying"], ["password_digest", "Character varying"], ["first_name", "Character varying"], ["last_name", "Character varying"], ["gender", "Integer"], ["avatar_file_name", "Character varying"], ["avatar_content_type", "Character varying"], ["avatar_file_size", "Integer"], ["avatar_updated_at", "Timestamp without time zone"], ["height", "Numeric"], ["weight", "Numeric"], ["weight_unit", "Integer"], ["height_unit", "Integer"], ["birthday", "Date"], ["email_confirmed_at", "Timestamp without time zone"], ["locale", "Character varying"], ["registration_country", "Character varying"], ["application_source", "Integer"], ["platform_source", "Integer"], ["created_at", "Timestamp without time zone"], ["updated_at", "Timestamp without time zone"], ["emails_allowed", "Boolean"], ["about", "Text"], ["measurement_system", "Integer"], ["sanitized_email", "Character varying"], ["time_zone", "Character varying"], ["id", "Integer"]],
-      "description": []
-    }],
-    "links": [{
-      "source": "Marketing::UserProfile",
-      "target": "Marketing::Campaign",
-      "arrowtail": "dot_blue",
-      "arrowhead": "double_arrow_blue",
-      "color": "#1c7a9b"
-    }, {
-      "source": "Audited::Audit",
-      "target": "NotificationInfo",
-      "arrowtail": "odot_blue",
-      "arrowhead": "double_arrow_blue",
-      "color": "#1c7a9b"
-    }, {
-      "source": "Referral::Reference",
-      "target": "User",
-      "arrowtail": "dot_dark_gray",
-      "arrowhead": "none",
-      "color": "#383838"
-    }, {
-      "source": "Audited::Audit",
-      "target": "User",
-      "arrowtail": "odot_blue",
-      "arrowhead": "double_arrow_blue",
-      "color": "#1c7a9b"
-    }, {
-      "source": "Audited::Audit",
-      "target": "User",
-      "arrowtail": "odot_blue",
-      "arrowhead": "double_arrow_blue",
-      "color": "#1c7a9b"
-    }, {
-      "source": "Facebook::Account",
-      "target": "User",
-      "arrowtail": "dot_light_gray",
-      "arrowhead": "single_arrow_light_gray",
-      "color": "#BBB"
-    }, {
-      "source": "NotificationInfo",
-      "target": "User",
-      "arrowtail": "dot_light_gray",
-      "arrowhead": "single_arrow_light_gray",
-      "color": "#BBB"
-    }, {
-      "source": "TemporaryPassword",
-      "target": "User",
-      "arrowtail": "dot_blue",
-      "arrowhead": "double_arrow_blue",
-      "color": "#1c7a9b"
-    }, {
-      "source": "Auth::RefreshToken",
-      "target": "User",
-      "arrowtail": "dot_blue",
-      "arrowhead": "double_arrow_blue",
-      "color": "#1c7a9b"
-    }, {
-      "source": "Marketing::UserProfile",
-      "target": "User",
-      "arrowtail": "dot_blue",
-      "arrowhead": "double_arrow_blue",
-      "color": "#1c7a9b"
-    }, {
-      "source": "Marketing::EmailConfirmation",
-      "target": "User",
-      "arrowtail": "dot_blue",
-      "arrowhead": "double_arrow_blue",
-      "color": "#1c7a9b"
-    }]
-  }
-};
-
-model_diagram_json["models"].links
-if (typeof model_diagram_json !== "undefined") {
-
-  generate_model_diagram_svg(model_diagram_json);
-
-}
