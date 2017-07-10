@@ -184,6 +184,18 @@ var model_diagram_json = {
 };
 
 
+var model_diagram_json_orig = prepareData(model_diagram_json);
+
+function prepareData(data) {
+  data["models"].nodes.forEach((node) => {
+
+    node.orig_name = JSON.parse(JSON.stringify(node.name.replace('::' , '')));
+    node.name = node.name.replace(/_/g, '::');
+  });
+
+  return JSON.parse(JSON.stringify(data));
+}
+
 const ELIPSE_WIDTH_FACTOR = 5,
     RECT_WIDTH_FACTOR = 3,
     EXPANDED_TOP_PADDING = -10,
@@ -196,9 +208,10 @@ const ELIPSE_WIDTH_FACTOR = 5,
       ['Datetime', 'darkOrange']
     ];
 
-
 var width = 780,
     height = 400;
+
+var zoom;
 
 var linkDistance = 300,
     padding = 1000,
@@ -208,27 +221,30 @@ var linkDistance = 300,
     linkStrength = 1,
     chargeDistance = 1000;
 
-var links = [];
 var nodes = {};
-
-var savedGraph = {nodes: [], links: []};
 var svg;
 
 var nodes_temp;
-var links_temp;
+
+var savedGraph = {nodes: []};
 
 d3.select("#saveBtn").on('click', function () {
-  savedGraph.nodes = nodes_temp.data();
-  console.log(savedGraph);
-  savedGraph.nodes.pop();
-  savedGraph.links = links_temp.data();
+  savedGraph.nodes = nodes_temp;
   svg.selectAll("*").remove();
 });
 
 d3.select("#loadBtn").on('click', function () {
-  draw(savedGraph);
+  var loadedGraph = {nodes: [], links: []};
+  loadedGraph.nodes = savedGraph.nodes;
+  loadedGraph.links = JSON.parse(JSON.stringify(model_diagram_json_orig))["models"].links;
+  draw(loadedGraph);
 });
 
+d3.select("#release").on('click', function () {
+  force.nodes().forEach(function (d) {
+    d.fixed = false;
+  });
+});
 
 var force = d3.layout.force()
     .charge(charge)
@@ -238,8 +254,6 @@ var force = d3.layout.force()
     .chargeDistance(chargeDistance)
     .linkDistance(linkDistance)
     .size([width, height]);
-
-var zoom;
 
 
 if (typeof model_diagram_json !== "undefined") {
@@ -257,7 +271,6 @@ function draw(graph) {
     viz.attr("transform",
         "translate(" + d3.event.translate + ")" + "scale(" + d3.event.scale + ")");
   };
-
 
   function linkDoubleClicked(link) {
     linkPath = d3.select(this)[0][0];
@@ -288,7 +301,6 @@ function draw(graph) {
         numberOfAttributes = node.attributes.length;
     // inside node
     d3.select(nodePathShape)
-
         .attr('d', function (d) {
           switch (d.shapetype) {
             case 'Mrecord':
@@ -306,13 +318,12 @@ function draw(graph) {
     /* TABS START */
     showAttributes();
     // ATTRIBUTES
-
+    console.log(node);
     d3.select(nodePathShape.parentNode)
         .classed('tab-1', true)
-
         .append('svg')
         .classed('tab', true)
-        .classed(node.name + 'Tabs', true)
+        .classed(node.orig_name + 'Tabs', true)
         .on('click', function () {
           setTabActive(this);
           showAttributes();
@@ -326,7 +337,7 @@ function draw(graph) {
 
     d3.select(nodePathShape.parentNode)
         .append('text')
-        .attr('class', node.name + 'Tabs')
+        .attr('class', node.orig_name + 'Tabs')
         .attr("y", 16)
         .attr('text-anchor', 'left')
         .attr('x', 4 - expWidth + 5)
@@ -341,7 +352,7 @@ function draw(graph) {
         .classed('tab-2', true)
         .append('svg')
         .classed('tab', true)
-        .classed(node.name + 'Tabs', true)
+        .classed(node.orig_name + 'Tabs', true)
         .on('click', function () {
           setTabActive(this);
           showDescription();
@@ -355,7 +366,7 @@ function draw(graph) {
 
     d3.select(nodePathShape.parentNode)
         .append('text')
-        .attr('class', node.name + 'Tabs')
+        .attr('class', node.orig_name + 'Tabs')
         .attr("y", 16)
         .attr('text-anchor', 'left')
         .attr('x', -expWidth + 63 + 5)
@@ -371,7 +382,7 @@ function draw(graph) {
         .classed('tab-2', true)
         .append('svg')
         .classed('tab', true)
-        .classed(node.name + 'Tabs', true)
+        .classed(node.orig_name + 'Tabs', true)
         .on('click', function () {
           setTabActive(this);
           showDescription();
@@ -385,7 +396,7 @@ function draw(graph) {
 
     d3.select(nodePathShape.parentNode)
         .append('text')
-        .attr('class', node.name + 'Tabs')
+        .attr('class', node.orig_name + 'Tabs')
         .attr("y", 16)
         .attr('text-anchor', 'left')
         .attr('x', -expWidth + 63 + 70 + 5)
@@ -404,11 +415,11 @@ function draw(graph) {
     }
 
     function removeAttributeText() {
-      d3.select(nodePathShape.parentNode).selectAll("." + node.name + 'AttributeText').remove();
+      d3.select(nodePathShape.parentNode).selectAll("." + node.orig_name + 'AttributeText').remove();
     }
 
     function removeDescriptionText() {
-      d3.select(nodePathShape.parentNode).selectAll("." + node.name + 'DescriptionText').remove();
+      d3.select(nodePathShape.parentNode).selectAll("." + node.orig_name + 'DescriptionText').remove();
     }
 
     /* TABS END */
@@ -422,7 +433,7 @@ function draw(graph) {
       for (i = 0; i < numberOfAttributes; i++) {
         d3.select(nodePathShape.parentNode)
             .append('text')
-            .attr('class', node.name + 'AttributeText')
+            .attr('class', node.orig_name + 'AttributeText')
             .attr("dy", (i + 1) * 20 + 10)
             .attr('text-anchor', 'left')
             .attr('x', 5 - expWidth)
@@ -435,7 +446,7 @@ function draw(graph) {
 
         d3.select(nodePathShape.parentNode)
             .append("text")
-            .attr("class", node.name + "AttributeText")
+            .attr("class", node.orig_name + "AttributeText")
             .attr("dy", (i + 1) * 20 + 10)
             .attr("text-anchor", "right")
             .attr('fill', function (d) {
@@ -466,7 +477,7 @@ function draw(graph) {
 
       d3.select(nodePathShape.parentNode)
           .append('text')
-          .attr('class', node.name + 'DescriptionText')
+          .attr('class', node.orig_name + 'DescriptionText')
           .attr("dy", 30)
           .attr('text-anchor', 'left')
           .attr('x', 5 - expWidth)
@@ -554,11 +565,11 @@ function draw(graph) {
   function minimizeNode(node, nodePathShape) {
     d3.select(nodePathShape).attr('d', node.shape);
     $("div#model-diagram-info").empty().append("<p style='display: inline-block; padding-right: 5px;' class='text-muted'>Model information</p>");
-    $('text.' + node.name + "AttributeText").remove();
-    $('text.' + node.name + "DescriptionText").remove();
-    $('.' + node.name + 'Tabs').remove();
+    $('text.' + node.orig_name + "AttributeText").remove();
+    $('text.' + node.orig_name + "DescriptionText").remove();
+    $('.' + node.orig_name + 'Tabs').remove();
     $("rect.node-git-link").remove();
-    $("rect." + node.name + "AttributeBackground").remove();
+    $("rect." + node.orig_name + "AttributeBackground").remove();
 
     node.expanded = false;
   }
@@ -570,14 +581,14 @@ function draw(graph) {
 
     if (node.attributes !== null) {
 
-      var numberOfAttributes = node.attributes.length
-      var maxLengthAttribute = getMaxLengthAttribute(node)
+      var numberOfAttributes = node.attributes.length;
+      var maxLengthAttribute = getMaxLengthAttribute(node);
 
       $("div#model-diagram-info").empty();
 
       node.expanded = true;
 
-      if ($("text." + node.name + "AttributeText").length < 1) {
+      if ($("text." + node.orig_name + "AttributeText").length < 1) {
         console.log("ausklappen");
 
         var n = $(this).parent();
@@ -594,7 +605,7 @@ function draw(graph) {
         minimizeNode(node, this);
       }
     } else {
-      $("div#model-diagram-info").empty().append("<p style='display: inline-block; padding-right: 5px;'>No attributes for " + node.name.replace(/_/g, '::') + "</p>");
+      $("div#model-diagram-info").empty().append("<p style='display: inline-block; padding-right: 5px;'>No attributes for " + node.orig_name + "</p>");
     }
   }
 
@@ -602,9 +613,8 @@ function draw(graph) {
     savedgraph = nodes;
   }
 
-
   zoom = d3.behavior.zoom()
-      .scaleExtent([0, 1])
+      .scaleExtent([0, 10])
       .on("zoom", zoomed);
   // Compute the distinct nodes from the links.
   links = graph.links;
@@ -617,11 +627,19 @@ function draw(graph) {
     var shapeType = "";
     var nodeNameLength = single_node.name.length;
 
+    var temp_shape = "";
 
-    if (single_node.shape == "Mrecord") {
+    if (!single_node.shapetype && single_node.shape) {
+      // First load
+      temp_shape = single_node.shape;
+    } else if (single_node.shape && single_node.shapetype) {
+      temp_shape = single_node.shapetype;
+    }
+
+    if (temp_shape == "Mrecord") {
       nodeShape = drawNodeElipse(nodeNameLength);
       shapeType = "Mrecord";
-    } else if (single_node.shape == "record") {
+    } else if (temp_shape == "record") {
       nodeShape = drawNodeRect(nodeNameLength);
       shapeType = "record";
     } else {
@@ -638,7 +656,8 @@ function draw(graph) {
     }
 
     nodes[single_node.name] = {
-      name: single_node.name.replace(/::/g, '_'),
+      name: single_node.name,
+      orig_name : single_node.orig_name,
       description: single_node.description,
       attributes: single_node.attributes,
       expanded: expanded,
@@ -646,7 +665,19 @@ function draw(graph) {
       fontcolor: single_node.fontcolor,
       shape: nodeShape,
       shapetype: shapeType
+      // new attributes
     };
+
+    if (single_node.px && single_node.py && single_node.x && single_node.y) {
+      // If position exists
+      nodes[single_node.name].px = single_node.px;
+      nodes[single_node.name].py = single_node.py;
+
+      nodes[single_node.name].x = single_node.x;
+      nodes[single_node.name].y = single_node.y;
+
+      nodes[single_node.name].fixed = single_node.fixed;
+    }
 
     if (single_node.attributes == single_node.fillcolor == single_node.fontcolor == null) {
       nodes[single_node.name].fillcolor = "#FFF";
@@ -683,7 +714,28 @@ function draw(graph) {
       .start();
   //.chargeDistance(chargeDistance)
 
-  var n = 100;
+  var output = [];
+
+  for (var type in nodes) {
+
+    if (isNode(nodes[type])) {
+      output.push(nodes[type]);
+    }
+  }
+
+  nodes_temp = output;
+
+  function isNode(n) {
+    var result = false;
+
+    model_diagram_json_orig["models"].nodes.forEach((node) => {
+      if (n.name == node.name) {
+        result = true;
+      }
+    })
+
+    return result;
+  }
 
   function dragstarted(d) {
     d3.event.sourceEvent.stopPropagation();
@@ -997,7 +1049,7 @@ function draw(graph) {
           .style("display", "none")
           .text(function (d) {
             linkText = d.source.name + " # " + d.target.name
-            return linkText.replace(/_/g, '::');
+            return linkText;
           });
 
   // define the nodes
@@ -1036,22 +1088,10 @@ function draw(graph) {
       })
       .text(function (d) {
         //console.log(d);
-        return d.name.replace(/_/g, '::');
+        return d.name;
       });
 
-
-  nodes_temp = viz.selectAll(".node").data(force.nodes());
-
-
-  //nodes_temp = force.nodes();
-
-  console.log("node_temp_first", viz.selectAll(".node").data(force.nodes()));
-  console.log("node_temp", nodes_temp);
-
-  links_temp = path;
-
   function tick() {
-
     path.attr("d", function (d) {
       var dr = 0;
       var heightSource = calculateHeight(d.source);
